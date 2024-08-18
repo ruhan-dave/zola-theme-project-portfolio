@@ -33,3 +33,35 @@ html {
 #page-content pre {
   @apply p-4 my-4 overflow-x-auto;
 }
+
+#pagination .button {
+  @apply border;
+  @apply border-gray-400;
+  @apply dark:border-black;
+  @apply rounded-lg;
+  @apply px-3;
+  @apply py-2;
+  @apply text-sm;
+  @apply font-medium;
+}
+
+#pagination .active {
+  @apply text-gray-800;
+  @apply dark:text-gray-300;
+  @apply dark:bg-gray-800;
+  @apply hover:bg-gray-300;
+  @apply dark:hover:bg-gray-600;
+  @apply dark:hover:text-white;
+  @apply rounded-md;
+  @apply transform;
+  @apply transition;
+  @apply duration-500;
+  @apply hover:scale-105;
+  @apply bg-gray-200;
+  @apply dark:bg-gray-800;
+}
+
+#pagination .inactive {
+  @apply bg-gray-400;
+  @apply text-gray-200;
+}

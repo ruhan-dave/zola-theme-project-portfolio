@@ -54,42 +54,44 @@
         </div>
         {% endif %}
 
-        <p class="text-bold mt-2">{{ page.description | safe }}</p>
+        <span>
+          {% if page.extra.image %}
+          <img class="h-auto w-48 rounded-lg lg:float-right lg:ml-4 my-1" src="/images/{{page.extra.image}}" />
+          {% endif %}
+          <p class="text-bold mt-2">{{ page.description | safe }}</p>
 
-        <!-- Read more link -->
-        <div class="flex items-center w-1/3 mb-2">
-          <a class="flex" href='{{ page.permalink }}'>
-            Read More
-            <svg class="w-6 h-6 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-            </svg>
-          </a>
-        </div>
-      </div>
+          <!-- Read more link -->
+          <div class="flex items-center w-1/3 mb-2">
+            <a class="flex" href='{{ page.permalink }}'>
+              Read More
+              <svg class="w-6 h-6 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+              </svg>
+            </a>
+          </div>
 
-      <!-- Summary -->
-      <div class="text-bold mt-2">
-        {{ page.summary | safe }}
+          <!-- Categories and Tags -->
+          {% if page.taxonomies.skills %}
+          <h2>Skills & Technologies</h2>
+          <div class="flex sm:flex-row flex-col flex-wrap sm:gap-x-7">
+            {% for skill in page.taxonomies.skills %}
+            <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
+              href="{{ get_taxonomy_url(kind='skills', name=skill) }}">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
+                </path>
+              </svg>
+              <span class="pl-1">{{skill}}</span>
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </span>
       </div>
-
-      <!-- Categories and Tags -->
-      {% if page.taxonomies.skills %}
-      <h2>Skills & Technologies</h2>
-      <div class="flex sm:flex-row flex-col flex-wrap sm:gap-x-7">
-        {% for skill in page.taxonomies.skills %}
-        <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
-          href="{{ get_taxonomy_url(kind='skills', name=skill) }}">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-              d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-            </path>
-          </svg>
-          <span class="pl-1">{{skill}}</span>
-        </a>
-        {% endfor %}
-      </div>
-      {% endif %}
     </div>
     {% endfor %}
   </div>
@@ -98,33 +100,27 @@
 
 {% block pagination %}
 {% if paginator.previous or paginator.next %}
-<div class="max-w-7xl px-2 sm:px-6 lg:px-8 mx-auto w-full">
+<div id="pagination" class="max-w-7xl mt-8 px-2 sm:px-6 lg:px-8 mx-auto w-full">
   <div class="flex items-center justify-between">
     {% if not paginator.previous %}
-    <!-- Disabled -->
-    <span
-      class="flex items-center border border-gray-400 dark:border-black rounded-lg px-3 py-4 bg-gray-400 text-gray-200">
-      <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+    <!-- Inactive -->
+    <span class="button inactive">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
       </svg>
-      Previous
     </span>
     {% else %}
     <!-- Active -->
-    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white px-3 py-4 rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
-      href="{{ paginator.previous }}" {% if not paginator.previous %}disabled{% endif %}>
-      <svg class="w-7 h-7 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+    <a class="button active" href="{{ paginator.previous }}" {% if not paginator.previous %}disabled{% endif %}>
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
       </svg>
-      Previous
     </a>
     {% endif %}
     <ul class="flex gap-x-2">
       {% for pager in range(start=1, end=paginator.number_pagers+1) %}
       <li class="">
-        <a class="p-4 border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 {% if paginator.current_index == pager %}bg-blue-500{% else %}bg-gray-200 dark:bg-gray-800{% endif %}"
+        <a class="button {% if paginator.current_index == pager %}inactive{% else %}active{% endif %}"
           href="{{ paginator.base_url }}{{pager}}" aria-label="Page {{pager}}">
           {{pager}}
         </a>
@@ -132,22 +128,16 @@
       {% endfor %}
     </ul>
     {% if not paginator.next %}
-    <!-- Disabled -->
-    <span
-      class="flex items-center border border-gray-400 dark:border-black rounded-lg  px-3 py-4 bg-gray-400 text-gray-200">
-      Next Page
-      <svg class="w-7 h-7 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+    <!-- Inactive -->
+    <span class="button inactive">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
       </svg>
     </span>
     {% else %}
     <!-- Active -->
-    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white px-3 py-4 rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
-      href="{{ paginator.next }}">
-      Next page
-      <svg class="w-7 h-7 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        xmlns="http://www.w3.org/2000/svg">
+    <a class="button active" href="{{ paginator.next }}">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
       </svg>
     </a>
