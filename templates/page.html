@@ -48,7 +48,7 @@
     <!-- Content -->
     <div id="page-content" class="text-bold mt-2">
       {% if page.extra.image %}
-      <img class="h-auto w-96 rounded-lg lg:float-right lg:ml-4 my-2" src="/images/{{page.extra.image}}" />
+      <img class="h-auto w-96 rounded-lg lg:float-right lg:ml-4 my-2" src="{{ config.base_url | trim_end_matches(pat='/') | safe }}/images/{{page.extra.image}}" />
       {% endif %}
       {% if page.description %}
       <p class="text-bold">{{ page.description }}</p>

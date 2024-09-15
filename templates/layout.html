@@ -7,7 +7,7 @@
 
   <!-- FAVICON -->
   {% if config.extra.favicon.webmanifest %}
-  <link href="{{ config.extra.favicon.manifest }}"" rel=" manifest" />
+  <link href="{{ config.extra.favicon.manifest }}" rel=" manifest" />
   {% endif %}
   {% if config.extra.favicon.favicon_16x16 %}
   <link href='{{ config.extra.favicon.favicon_16x16 }}' rel="icon" sizes="16x16" type="image/png" />
@@ -28,7 +28,7 @@
   <link href='{{ config.extra.favicon.apple_touch_icon }}' rel="apple-touch-icon" sizes="180x180" />
   {% endif %}
 
-  <link href="/css/main.css" rel="stylesheet">
+  <link href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/css/main.css" rel="stylesheet">
   <link id="syntax_highlight" href="#" rel="stylesheet">
 
   <title>
@@ -73,7 +73,7 @@
         </div>
         <div class="flex-1 flex items-center">
           <div class="flex-shrink-0 flex items-center ml-2">
-            <a href="/" class="text-xl text-gray-800 dark:text-white">{{config.extra.navbar.title}}</a>
+            <a href="{{ config.base_url | safe }}" class="text-xl text-gray-800 dark:text-white">{{config.extra.navbar.title}}</a>
             <!-- <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg" alt="Workflow">
             <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg" alt="Workflow"> -->
           </div>
@@ -83,14 +83,14 @@
               {% for item in config.extra.navbar.items %}
               {% if lang == item.lang %}
               {% for link in item.links %}
-              <a href="{{ link.url }}"
+              <a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ link.url }}"
                 class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{
                 link.name }}</a>
               {% endfor %}
               {% endif %}
               {% endfor %}
 
-              {% if config.extra.enable_sidebar %}
+              {% if config.extra.sidebar.items %}
               <!-- More ... Button (sidebar) -->
               <button id="toggle-sidebar">
                 <svg class="w-7 h-7 text-gray-800 dark:text-gray-300" fill="none" stroke="currentColor"
@@ -177,13 +177,13 @@
           {% endif %}
 
           <!---------------------------- Sidebar Menu ---------------------------->
-          {% if config.extra.enable_sidebar %}
+          {% if config.extra.sidebar.items %}
           <div id="sidebar"
             class="nav-links -translate-x-full flex flex-col pt-6 p-2 text-2xl text-black dark:text-gray-200 bg-gray-200 dark:bg-gray-900 transform top-0 left-0 w-64 bg-white fixed h-full overflow-auto ease-in-out transition-all duration-300 z-30 shadow-2xl">
             {% for item in config.extra.sidebar.items %}
             {% if lang == item.lang %}
             {% for link in item.links %}
-            <a href="{{ link.url }}"
+            <a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ link.url }}"
               class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{
               link.name }}</a>
             {% endfor %}
@@ -277,18 +277,18 @@
         {% for item in config.extra.navbar.items %}
         {% if lang == item.lang %}
         {% for link in item.links %}
-        <a href="{{ link.url }}"
+        <a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ link.url }}"
           class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{
           link.name }}</a>
         {% endfor %}
         {% endif %}
         {% endfor %}
 
-        {% if config.extra.enable_sidebar %}
+        {% if config.extra.sidebar.items %}
         {% for item in config.extra.sidebar.items %}
         {% if lang == item.lang %}
         {% for link in item.links %}
-        <a href="{{ link.url }}"
+        <a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ link.url }}"
           class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{
           link.name }}</a>
         {% endfor %}
@@ -320,8 +320,8 @@
       <div class="sm:w-2/3 text-center">
         <p class="text-sm text-black dark:text-white font-bold py-6">
           {% block content_footer %}
-          © {{ now() | date(format="%Y") }} <a href="https://www.getzola.org/themes/blow/">blow</a> theme made with <a
-            href="https://tailwindcss.com/" target="_blank">tailwindcss</a> for <a href="https://www.getzola.org/"
+          © {{ now() | date(format="%Y") }} <a href="https://github.com/awinterstein/zola-theme-project-portfolio/">Project Portfolio</a> theme made with <a
+            href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> for <a href="https://www.getzola.org/"
             target="_blank">Zola</a>
           {% endblock %}
         </p>
@@ -330,17 +330,14 @@
   </footer>
 
   <!------------------------- SCRIPTS ------------------------->
-  <script defer src="/js/main.js"></script>
+  <script defer src="{{ config.base_url | trim_end_matches(pat='/') | safe }}/js/main.js"></script>
   {% if config.extra.enable_search %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/elasticlunr/0.9.6/elasticlunr.min.js"></script>
   <script src="/search_index.{{lang}}.js"></script>
-  <script defer src="/js/search.js"></script>
+  <script defer src="{{ config.base_url | trim_end_matches(pat='/') | safe }}/js/search.js"></script>
   {% endif %}
   {% if config.extra.enable_multilingue %}
-  <script defer src="/js/lang.js"></script>
-  {% endif %}
-  {% if config.extra.enable_adsense %}
-  <script async src="{{ config.extra.adsense_link | safe }}" crossorigin="anonymous"></script>
+  <script defer src="{{ config.base_url | trim_end_matches(pat='/') | safe }}/js/lang.js"></script>
   {% endif %}
   {% block extra_js %}
   {% endblock extra_js %}
