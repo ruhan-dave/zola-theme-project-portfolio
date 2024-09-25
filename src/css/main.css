@@ -35,6 +35,20 @@
   ol {
     @apply list-decimal;
   }
+
+  blockquote {
+    p {
+      @apply py-0;
+    }
+
+    @apply italic;
+    @apply border-l-2;
+    @apply border-neutral-500;
+    @apply pl-4;
+    @apply mb-4;
+    @apply text-neutral-600;
+    @apply dark:text-neutral-400;
+  }
 }
 
 
