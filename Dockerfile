@@ -11,3 +11,6 @@ RUN apk add libc6-compat
 ARG TAILWIND_VERSION=3.4.10
 RUN wget https://github.com/tailwindlabs/tailwindcss/releases/download/v${TAILWIND_VERSION}/tailwindcss-linux-x64 -O /usr/local/bin/tailwindcss \
     && chmod +x /usr/local/bin/tailwindcss
+
+RUN apk add nodejs npm
+RUN npm install --g uglify-js

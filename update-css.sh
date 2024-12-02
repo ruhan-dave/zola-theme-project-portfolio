@@ -4,6 +4,7 @@
 SOURCE_DIR=$(cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd)
 
 TAILWINDCSS_COMMAND="tailwindcss -i src/css/main.css -o static/css/main.css --minify"
+UGLIFYJS_COMMAND="uglifyjs"
 
 # call the tailwindcss cli executable, if it can be found in the path
 if command -v tailwindcss >/dev/null; then
@@ -19,7 +20,12 @@ elif command -v docker >/dev/null; then
 
     # update the CSS file using tailwindcss
     docker run --user $UID:$(id -g) --mount type=bind,source=${SOURCE_DIR},target=/source -w /source develop-zola-tailwindcss \
-        ${TAILWINDCSS_COMMAND} || exit 3
+        sh -c "uglifyjs ./src/js/main.js --compress --mangle -o ./static/js/main.js &&
+               uglifyjs ./src/js/page.js --compress --mangle -o ./static/js/page.js &&
+               uglifyjs ./src/js/search.js --compress --mangle -o ./static/js/search.js &&
+               uglifyjs ./src/js/lang.js --compress --mangle -o ./static/js/lang.js
+               ${TAILWINDCSS_COMMAND}" || exit 3
+
 
 # print an error message if neither tailwindcss nor the docker executable could be found
 else

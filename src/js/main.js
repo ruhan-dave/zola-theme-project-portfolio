@@ -1,16 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // ---------------- Selected Navbar Link -------------------------
-  let navbar_links = document.querySelectorAll('.nav-links a');
-  let trim_last_slash = window.location.href.replace(/\/$/, '');
-  let selected_navbar_link = [...navbar_links].filter((item) => {
-    return ((item.href === trim_last_slash) || (item.href === window.location.href))
-  })
-  if (selected_navbar_link.length !== 0) {
-    for (let element of selected_navbar_link) {
-      element.className = "bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium"
-    }
-  }
-
   // ---------------- Switch Theme -------------------------
   // On page load or when changing themes, best to add inline in `head` to avoid FOUC
   if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
