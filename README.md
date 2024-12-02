@@ -44,7 +44,7 @@ theme = "project-portfolio" # The site theme to use.
 
 Create the files `projects.md` and `skills.md` in your `content` directory that are used to show the "Projects" and "Skills" [taxonomies](https://www.getzola.org/documentation/content/taxonomies/). They both need a title and can optionally get a descriptive text that will be shown above the terms of the taxonomy. See the following `projects.md` file as an example:
 
-```markdown
+```toml
 +++
 title = "Projects"
 +++
@@ -67,7 +67,7 @@ The `skills.md` file can be created the same way. The corresponding page will ju
 
 Finally, create the first project page in the `content` directory:
 
-```markdown
+```toml
 +++
 title = "Project Title"
 description = "Here is a short description of the project."
@@ -76,6 +76,7 @@ date = 2022-05-31 # The date when the project finished
 [extra]
 date_start = 2021-01-01 # Optional date when the project was started
 image = "water.jpg" # Optional filename to an image in the `static/images` directory
+top_project = true # Optional parameter to show the project on the projects overview page as well
 
 [taxonomies]
 projects=["Consumer"] # The category of the project (could be industry, type etc.)
