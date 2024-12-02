@@ -133,8 +133,8 @@ It supports setting a different color scheme depending on the user selected them
 In order to use it you should select the color scheme you want to use for light and dark themes in the list provided [here](https://www.getzola.org/documentation/getting-started/configuration/#syntax-highlighting) and edit your `config.toml` file like this example:
 
 ```toml
+highlight_code = true
 highlight_theme = "css"
-
 highlight_themes_css = [
   { theme = "ayu-dark", filename = "syntax-dark.css" },
   { theme = "ayu-light", filename = "syntax-light.css" },
