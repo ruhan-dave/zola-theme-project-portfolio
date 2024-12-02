@@ -28,11 +28,13 @@
     }
   }
 
-  ul {
+  /* Disk style for all unordered lists within the "main" element of the site. */
+  main ul {
     @apply list-disc;
   }
 
-  ol {
+  /* Decimal style for all ordered lists within the "main" element of the site. */
+  main ol {
     @apply list-decimal;
   }
 
