@@ -61,7 +61,7 @@ lead. Whatever makes most sense for your project portfolio.
 
 It would be shown with the configured title and content like this above the terms:
 
-![Screenshot of the projects taxonomy page](screenshot-projects-taxonomy.png)
+![Screenshot of the projects taxonomy page](https://raw.githubusercontent.com/awinterstein/zola-theme-project-portfolio/main/screenshot-projects-taxonomy.png)
 
 The `skills.md` file can be created the same way. The corresponding page will just show the terms of the skills taxonomy instead of the terms of the projects taxonomy then.
 
@@ -87,7 +87,7 @@ The content of the project description page follows here.
 
 The generated project site would then look like this:
 
-![Screenshot of the project example page](screenshot-project-example.png)
+![Screenshot of the project example page](https://raw.githubusercontent.com/awinterstein/zola-theme-project-portfolio/main/screenshot-project-example.png)
 
 ## Configuration
 
