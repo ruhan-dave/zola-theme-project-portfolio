@@ -1,3 +1,4 @@
+{% import "macros.html" as macros %}
 {% extends "layout.html" %}
 
 {% block content %}
@@ -13,86 +14,7 @@
     {% endif %}
 
     {% for page in pages %}
-    <div
-      class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
-      <div class="flex flex-col justify-center">
-        <h2 class="text-2xl text-bold pt-0"><a href='{{ page.permalink }}'>{{ page.title }}</a></h2>
-
-        <!-- Project type and date -->
-        {% if page.extra.date_start %}
-        <div class="flex space-x-3 text-gray-900 dark:text-gray-400">
-          <span class="mr-4">
-            {% if page.taxonomies.projects %}
-            <span>
-              {% for project in page.taxonomies.projects %}
-              <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
-                href="{{ get_taxonomy_url(kind='projects', name=project) }}">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
-                  </path>
-                </svg>
-                <span class="pl-1">{{project}}</span>
-              </a>
-              {% endfor %}
-            </span>
-            {% endif %}
-          </span>
-          <span class="flex items-center">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            <span class="ml-1"><time datetime="{{ page.date }}">{% if page.extra.date_start |
-                date(format='%Y') != page.date |
-                date(format='%Y') %}{{
-                page.extra.date_start | date(format='%Y') }} - {{ page.date | date(format='%Y')
-                }}{% else %}{{ page.date | date(format='%Y') }}{% endif %}</time></span>
-          </span>
-        </div>
-        {% endif %}
-
-        <span>
-          {% if page.extra.image %}
-          <img class="h-auto w-48 rounded-lg lg:float-right lg:ml-4 my-1" src="{{ config.base_url | trim_end_matches(pat='/') | safe }}/images/{{page.extra.image}}" />
-          {% endif %}
-          <p class="text-bold mt-2">{{ page.description | safe }}</p>
-
-          <!-- Read more link -->
-          <div class="flex items-center w-1/3 mb-2">
-            <a class="flex" href='{{ page.permalink }}'>
-              Read More
-              <svg class="w-6 h-6 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3">
-                </path>
-              </svg>
-            </a>
-          </div>
-
-          <!-- Categories and Tags -->
-          {% if page.taxonomies.skills %}
-          <h2>Skills & Technologies</h2>
-          <div class="flex sm:flex-row flex-col flex-wrap sm:gap-x-7">
-            {% for skill in page.taxonomies.skills %}
-            <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
-              href="{{ get_taxonomy_url(kind='skills', name=skill) }}">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
-                </path>
-              </svg>
-              <span class="pl-1">{{skill}}</span>
-            </a>
-            {% endfor %}
-          </div>
-          {% endif %}
-        </span>
-      </div>
-    </div>
+      {{ macros::project_tile(page=page) }}
     {% endfor %}
   </div>
 </div>
