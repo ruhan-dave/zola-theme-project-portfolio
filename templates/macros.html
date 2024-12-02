@@ -1,7 +1,9 @@
 <!-- Shows a list of all given terms of a taxonomy. An icon is shown in front of each term. This icon needs to be given as an SVG path. -->
-{% macro terms_list(terms, icon_definition) %}
-<div class="flex flex-wrap sm:flex-row flex-col sm:gap-x-7 gap-y-5 mt-6">
+{% macro terms_list(terms, icon_definition, maximum_amount='', minimum_amount='') %}
+<div class="flex flex-wrap justify-center sm:flex-row flex-col sm:gap-x-7 gap-y-5 mt-6 mb-6">
     {% for term in terms %}
+    {# Show term only if its item count is between minimum and maximum amount (if those parameters are given) #}
+    {% if (not minimum_amount or term.pages | length >= minimum_amount) and (not maximum_amount or term.pages | length <= maximum_amount) %}
     <a href="{{ term.permalink | safe }}" class="flex items-center space-x-2">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ icon_definition }}">
@@ -9,6 +11,7 @@
         </svg>
         <span class="text-bold">{{term.name}} <sup>{{ term.pages | length }}</sup></span>
     </a>
+    {% endif %}
     {% endfor %}
 </div>
 {% endmacro %}
@@ -21,10 +24,21 @@
 {% endmacro %}
 
 <!-- Shows a list of all given terms of a taxonomy with the skills terms icon in front of each term. -->
-{% macro terms_list_skills(terms) %}
-{{ macros::terms_list(terms=terms, icon_definition="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7
+{% macro terms_list_skills(terms, maximum_amount='', minimum_amount='') %}
+{{ macros::terms_list(terms=terms, maximum_amount=maximum_amount, minimum_amount=minimum_amount, icon_definition="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7
 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0
 014-4z") }}
+{% endmacro %}
+
+
+<!-- Shows a list of all given terms with at least 'threshold' items of a taxonomy with the skills terms icon in front of each term. -->
+{% macro terms_list_skills_main(terms, threshold) %}
+{{ macros::terms_list_skills(terms=terms, minimum_amount=threshold) }}
+{% endmacro %}
+
+<!-- Shows a list of all given terms with less than 'threshold' items of a taxonomy with the skills terms icon in front of each term. -->
+{% macro terms_list_skills_other(terms, threshold) %}
+{{ macros::terms_list_skills(terms=terms, maximum_amount=threshold-1) }}
 {% endmacro %}
 
 <!-- Shows the given skills that are part of a project. -->
