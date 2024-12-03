@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-  // ---------------- Switch Theme -------------------------
-  // On page load or when changing themes, best to add inline in `head` to avoid FOUC
-  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    document.getElementById("syntax_highlight").href = "/syntax-dark.css";
-  } else {
-    document.getElementById("syntax_highlight").href = "/syntax-light.css";
-  }
-
   // ---------------- Toggle Sidebar -------------------------
   document.getElementById('toggle-sidebar')?.addEventListener('click', toggleSidebar);
 
