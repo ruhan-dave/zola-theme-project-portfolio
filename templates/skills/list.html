@@ -10,10 +10,10 @@
   <div class="text-bold mt-4">{{ page.content | safe }}</div>
 
   {% if config.extra.skills.main_skills_threshold %}
-  {% if config.extra.skills.main_skills_heading %}<h2> {{ config.extra.skills.main_skills_heading }}</h2>{% endif %}
+  {% if config.extra.skills.main_skills_heading[lang] %}<h2> {{ config.extra.skills.main_skills_heading[lang] }}</h2>{% endif %}
   {{ macros::terms_list_skills_main(terms=terms, threshold=config.extra.skills.main_skills_threshold) }}
 
-  {% if config.extra.skills.other_skills_heading %}<h2>{{ config.extra.skills.other_skills_heading }}</h2>{% endif %}
+  {% if config.extra.skills.other_skills_heading[lang] %}<h2>{{ config.extra.skills.other_skills_heading[lang] }}</h2>{% endif %}
   {{ macros::terms_list_skills_other(terms=terms, threshold=config.extra.skills.main_skills_threshold) }}
   {% else %}
   {{ macros::terms_list_skills(terms=terms) }}

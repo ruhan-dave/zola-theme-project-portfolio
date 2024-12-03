@@ -23,7 +23,6 @@ elif command -v docker >/dev/null; then
         sh -c "uglifyjs ./src/js/main.js --compress --mangle -o ./static/js/main.js &&
                uglifyjs ./src/js/page.js --compress --mangle -o ./static/js/page.js &&
                uglifyjs ./src/js/search.js --compress --mangle -o ./static/js/search.js &&
-               uglifyjs ./src/js/lang.js --compress --mangle -o ./static/js/lang.js
                ${TAILWINDCSS_COMMAND}" || exit 3
 
 

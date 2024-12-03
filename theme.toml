@@ -17,17 +17,15 @@ homepage = "https://www.winterstein.biz"
 enable_search = false
 enable_multilingue = false
 
-[extra.lang]
-items = [
-    { lang = "en", links = [
-        { base_url = "/", name = "English" },
-        { base_url = "/fr", name = "French" }
-    ] },
-    { lang = "fr", links = [
-        { base_url = "/", name = "Anglais" },
-        { base_url = "/fr", name = "Français" }
-    ] }
-]
+[extra.languages.en]
+symbol = "🇬🇧"
+
+[extra.languages.de]
+symbol = "🇩🇪"
+
+[extra.languages.fr]
+symbol = "🇫🇷"
+
 
 [extra.navbar]
 title = "Project Portfolio"
@@ -35,13 +33,13 @@ items = [
     { lang = "en", links = [
         { url = "", name = "Home" },
         { url = "projects", name = "Projects" },
-        { url = "skills", name = "Skills" }
+        { url = "skills", name = "Skills" },
     ] },
-    { lang = "fr", links = [
-        { url = "fr", name = "Accueil" },
-        { url = "fr/categories", name = "Categories" },
-        { url = "fr/tags", name = "Tags" }
-    ] }
+    { lang = "de", links = [
+        { url = "de", name = "Home" },
+        { url = "de/projects", name = "Projekte" },
+        { url = "de/skills", name = "Qualifikationen" },
+    ] },
 ]
 
 [extra.sidebar]
@@ -85,5 +83,5 @@ manifest = "/icons/site.webmanifest"
 # Configuration parameters for the skills taxonomy overview page
 [extra.skills]
 #main_skills_threshold = 5 # Set this variable to show all skills with at least n projects as main skills
-#main_skills_heading = "Main Skills" # The heading for the main skills list (only relevant, if main_skills_threshold is set)
-#other_skills_heading = "Additional Skills" # The heading for the list of the other skills (only relevant, if main_skills_threshold is set)
+#main_skills_heading = { en = "Main Skills", de = "Top-Fähigkeiten" } # The heading for the main skills list (only relevant, if main_skills_threshold is set)
+#other_skills_heading = { en = "Additional Skills", de = "Weitere Fähigkeiten" } # The heading for the list of the other skills (only relevant, if main_skills_threshold is set)

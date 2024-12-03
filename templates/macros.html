@@ -42,11 +42,11 @@
 {% endmacro %}
 
 <!-- Shows the given skills that are part of a project. -->
-{% macro project_list_skills(skills) %}
+{% macro project_list_skills(skills, lang) %}
 <div class="flex sm:flex-row flex-col flex-wrap sm:gap-x-7">
     {% for skill in skills %}
     <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
-        href="{{ get_taxonomy_url(kind='skills', name=skill) }}">
+        href="{{ get_taxonomy_url(kind='skills', name=skill, lang=lang) }}">
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z">
@@ -58,7 +58,7 @@
 </div>
 {% endmacro %}
 
-<!-- Shows the overview or full tile for a project page. -->
+<!-- Shows the overview tile for a project page. -->
 {% macro project_tile(page) %}
 <div
     class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
@@ -73,7 +73,7 @@
                 <span>
                     {% for project in page.taxonomies.projects %}
                     <a class="text-gray-900 dark:text-gray-400 flex py-1 items-center"
-                        href="{{ get_taxonomy_url(kind='projects', name=project) }}">
+                        href="{{ get_taxonomy_url(kind='projects', name=project, lang=lang) }}">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -125,7 +125,7 @@
             <!-- Skills & Technologies Section -->
             {% if page.taxonomies.skills %}
             <h2>Skills & Technologies</h2>
-            {{ macros::project_list_skills(skills=page.taxonomies.skills) }}
+            {{ macros::project_list_skills(skills=page.taxonomies.skills, lang=lang) }}
             {% endif %}
 
         </span>

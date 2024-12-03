@@ -13,7 +13,7 @@
 
     <!-- List the top projects -->
     <div class="flex flex-col gap-y-6 w-full sm:w-2/3 mt-10">
-    {% set categories = get_taxonomy(kind="projects") %}
+    {% set categories = get_taxonomy(kind="projects", lang=lang) %}
     {% for project_type in categories.items %}
         {% for project_page in project_type.pages %}
             {%if project_page.extra.top_project%}
