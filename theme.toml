@@ -15,32 +15,9 @@ homepage = "https://www.winterstein.biz"
 # Use snake_casing to be consistent with the rest of Zola
 [extra]
 enable_search = false
-enable_multilingue = false
+enable_multilingual = false
 
-[extra.languages.en]
-symbol = "🇬🇧"
-
-[extra.languages.de]
-symbol = "🇩🇪"
-
-[extra.languages.fr]
-symbol = "🇫🇷"
-
-
-[extra.navbar]
-title = "Project Portfolio"
-items = [
-    { lang = "en", links = [
-        { url = "", name = "Home" },
-        { url = "projects", name = "Projects" },
-        { url = "skills", name = "Skills" },
-    ] },
-    { lang = "de", links = [
-        { url = "de", name = "Home" },
-        { url = "de/projects", name = "Projekte" },
-        { url = "de/skills", name = "Qualifikationen" },
-    ] },
-]
+#main_skills_threshold = 5 # Set this variable to show all skills with at least n projects as main skills
 
 [extra.sidebar]
 #items = [
@@ -72,16 +49,10 @@ telegram = ""
 email = ""
 
 [extra.favicon]
-favicon = "/icons/favicon.ico"
-favicon_16x16 = "/icons/favicon-16x16.png"
-favicon_32x32 = "/icons/favicon-32x32.png"
-apple_touch_icon = "/icons/apple-touch-icon.png"
-android_chrome_512 = "/icons/android-chrome-512x512.png"
-android_chrome_192 = "/icons/android-chrome-192x192.png"
-manifest = "/icons/site.webmanifest"
-
-# Configuration parameters for the skills taxonomy overview page
-[extra.skills]
-#main_skills_threshold = 5 # Set this variable to show all skills with at least n projects as main skills
-#main_skills_heading = { en = "Main Skills", de = "Top-Fähigkeiten" } # The heading for the main skills list (only relevant, if main_skills_threshold is set)
-#other_skills_heading = { en = "Additional Skills", de = "Weitere Fähigkeiten" } # The heading for the list of the other skills (only relevant, if main_skills_threshold is set)
+#favicon = "/icons/favicon.ico"
+#favicon_16x16 = "/icons/favicon-16x16.png"
+#favicon_32x32 = "/icons/favicon-32x32.png"
+#apple_touch_icon = "/icons/apple-touch-icon.png"
+#android_chrome_512 = "/icons/android-chrome-512x512.png"
+#android_chrome_192 = "/icons/android-chrome-192x192.png"
+#manifest = "/icons/site.webmanifest"
