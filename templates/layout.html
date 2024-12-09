@@ -5,21 +5,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>{% block title %}{{ config.title }} | {{ page.title | default(value=config.extra.index.slogan) }}{% endblock title %}</title>
+
+  <!-- STYLESHEETS -->
+  <link href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/css/main.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/syntax-dark.css" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" type="text/css" href="/syntax-light.css" media="(prefers-color-scheme: light)" />
+
   <!-- FAVICON -->
-  {%- if config.extra.favicon.webmanifest %}<link href="{{ config.extra.favicon.manifest }}" rel=" manifest" />{% endif %}
+  {% if config.extra.favicon.webmanifest %}<link href="{{ config.extra.favicon.manifest }}" rel=" manifest" />{% endif %}
   {% if config.extra.favicon.favicon_16x16 %}<link href='{{ config.extra.favicon.favicon_16x16 }}' rel="icon" sizes="16x16" type="image/png" />{% endif %}
   {% if config.extra.favicon.favicon_32x32 %}<link href='{{ config.extra.favicon.favicon_32x32 }}' rel="icon" sizes="32x32" type="image/png" />{% endif %}
   {% if config.extra.favicon.android_chrome_512 %}<link href='{{ config.extra.favicon.android_chrome_512 }}' rel="android-chrome" sizes="512x512" />{% endif %}
   {% if config.extra.favicon.android_chrome_192 %}<link href='{{ config.extra.favicon.android_chrome_192 }}' rel="android-chrome" sizes="192x192" />{% endif %}
   {% if config.extra.favicon.apple_touch_icon %}<link href='{{ config.extra.favicon.apple_touch_icon }}' rel="apple-touch-icon" sizes="180x180" />{% endif %}
   {% if config.extra.favicon.apple_touch_icon %}<link href='{{ config.extra.favicon.apple_touch_icon }}' rel="apple-touch-icon" sizes="180x180" />{% endif %}
-
-  <link href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/css/main.css" rel="stylesheet">
-
-  <link rel="stylesheet" type="text/css" href="/syntax-dark.css" media="(prefers-color-scheme: dark)" />
-  <link rel="stylesheet" type="text/css" href="/syntax-light.css" media="(prefers-color-scheme: light)" />
-
-  <title>{% block title %}{{ config.title }}{% endblock title %}</title>
 </head>
 
 <body class="dark:bg-gray-700 flex flex-col h-screen justify-between">
@@ -168,7 +168,7 @@
           {% endif %}
 
           {% if config.extra.enable_multilingual and current_path %}
-           <!-- Language change button -->
+          <!-- Language change button -->
           <div class="flex p-2 ml-4 relative">
             {# Get the non-active language from the languages map. This only works, as long as there are no more than two languages defined. #}
             {% for key, item in config.languages -%}
@@ -176,19 +176,19 @@
             {% endfor -%}
 
             {% if page %}
-              {% for item in page.translations %}
-                {% if item.lang == other_language %}
-                  {% set_global translation_url = item.permalink %}
-                {% endif %}
-              {% endfor %}
+            {% for item in page.translations %}
+            {% if item.lang == other_language %}
+            {% set_global translation_url = item.permalink %}
+            {% endif %}
+            {% endfor %}
             {% else %}
-              {% if other_language == config.default_language %}
-                {% set translation_url = config.base_url | safe %}
-              {% else %}
-                {% set translation_url = config.base_url ~ '/' ~ other_language %}
-              {% endif %}
-              {% set trimmed_path = current_path | trim_start_matches(pat='/') | trim_start_matches(pat=lang) %}
-              {% set translation_url = translation_url ~ '/' ~ trimmed_path %}
+            {% if other_language == config.default_language %}
+            {% set translation_url = config.base_url | safe %}
+            {% else %}
+            {% set translation_url = config.base_url ~ '/' ~ other_language %}
+            {% endif %}
+            {% set trimmed_path = current_path | trim_start_matches(pat='/') | trim_start_matches(pat=lang) %}
+            {% set translation_url = translation_url ~ '/' ~ trimmed_path %}
             {% endif %}
             <a href="{{ translation_url }}"
               class="bg-gray-200 text-gray-800 hover:text-gray-900 dark:bg-gray-800 dark:text-gray-400 dark:hover:text-white p-1 rounded-full">
@@ -246,7 +246,7 @@
         <p class="text-sm text-black dark:text-white font-bold py-6">
           {% block content_footer %}
           © {{ now() | date(format="%Y") }} <a href="https://github.com/awinterstein/zola-theme-project-portfolio/">Project Portfolio</a> theme made with <a
-            href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> for <a href="https://www.getzola.org/"
+          href="https://tailwindcss.com/" target="_blank">Tailwind CSS</a> for <a href="https://www.getzola.org/"
             target="_blank">Zola</a>
           {% endblock %}
         </p>
