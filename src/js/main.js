@@ -21,15 +21,20 @@ function toggleSidebar() {
 
 function toggleMobileMenu() {
   let menu = document.querySelector('#mobile-menu div.nav-links');
+  let icon = document.querySelector('#toggle-mobile-menu i');
   if ([...menu.classList].includes('h-screen')) {
     document.body.classList.remove("overflow-hidden", "relative")
     document.documentElement.classList.remove("overscroll-none",)
     menu.classList.remove('h-screen')
     menu.classList.add('h-0')
+    icon.classList.remove('bi-x-lg')
+    icon.classList.add('bi-list')
   } else {
     document.body.classList.add("overflow-hidden", "relative")
     document.documentElement.classList.add("overscroll-none",)
     menu.classList.remove('h-0')
     menu.classList.add('h-screen')
+    icon.classList.remove('bi-list')
+    icon.classList.add('bi-x-lg')
   }
 }

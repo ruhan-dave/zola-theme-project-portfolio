@@ -47,6 +47,7 @@ linkedin = ""
 stackoverflow = ""
 telegram = ""
 email = ""
+phone = ""
 
 [extra.favicon]
 #favicon = "/icons/favicon.ico"
