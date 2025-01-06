@@ -19,6 +19,18 @@ enable_multilingual = false
 
 #main_skills_threshold = 5 # Set this variable to show all skills with at least n projects as main skills
 
+[extra.navbar]
+#title = ""
+
+#items = [
+#    { lang = "en", links = [
+#        { url = "resume", name = "CV" },
+#    ] },
+#    { lang = "de", links = [
+#        { url = "resume", name = "Lebenslauf" },
+#    ] }
+#]
+
 [extra.sidebar]
 #items = [
 #    { lang = "en", links = [
