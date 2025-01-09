@@ -161,7 +161,7 @@ highlight_themes_css = [
 To overwrite the default footer (copyright notice), extend the `layout.html` template of the theme as described in the [Zola documentation](https://www.getzola.org/documentation/themes/extending-a-theme/#overriding-a-block) by creating a `layout.html` with the following content in your `templates` directory:
 
 ```jinja
-{% extends "blow/templates/layout.html" %}
+{% extends "project-portfolio/templates/layout.html" %}
 
 {% block content_footer %}
 Here is my own footer with a <a href="http://example.com">link</a>.
