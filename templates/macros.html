@@ -1,9 +1,11 @@
-<!-- Shows a list of all given terms of a taxonomy. An icon is shown in front of each term. This icon needs to be given as a name of a Bootstrap icon. -->
+<!-- Shows a list of all given terms of a taxonomy. An icon is shown in front of each term. This icon needs to be 
+given as a name of a Bootstrap icon. -->
 {% macro terms_list(terms, icon, maximum_amount='', minimum_amount='') %}
 <div class="flex flex-wrap justify-center sm:flex-row flex-col sm:gap-x-7 gap-y-5 mt-6 mb-6">
     {% for term in terms %}
     {# Show term only if its item count is between minimum and maximum amount (if those parameters are given) #}
-    {% if (not minimum_amount or term.pages | length >= minimum_amount) and (not maximum_amount or term.pages | length
+    {% if (not minimum_amount or term.pages | length >= minimum_amount) and (not maximum_amount or term.pages | 
+length
     <= maximum_amount) %} <a href="{{ term.permalink | safe }}" class="flex items-center space-x-2">
         <i class="bi bi-{{ icon }}" style="font-size: 1rem;"></i>
         <span class="text-bold">{{ term.name }} <sup>{{ term.pages | length }}</sup></span>
@@ -24,12 +26,14 @@
 {% endmacro %}
 
 
-<!-- Shows a list of all given terms with at least 'threshold' items of a taxonomy with the skills terms icon in front of each term. -->
+<!-- Shows a list of all given terms with at least 'threshold' items of a taxonomy with the skills terms icon in 
+front of each term. -->
 {% macro terms_list_skills_main(terms, threshold) %}
 {{ macros::terms_list_skills(terms=terms, minimum_amount=threshold) }}
 {% endmacro %}
 
-<!-- Shows a list of all given terms with less than 'threshold' items of a taxonomy with the skills terms icon in front of each term. -->
+<!-- Shows a list of all given terms with less than 'threshold' items of a taxonomy with the skills terms icon in 
+front of each term. -->
 {% macro terms_list_skills_other(terms, threshold) %}
 {{ macros::terms_list_skills(terms=terms, maximum_amount=threshold-1) }}
 {% endmacro %}
@@ -50,7 +54,8 @@
 <!-- Shows the overview tile for a project page. -->
 {% macro project_tile(page) %}
 <div
-    class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
+    class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition 
+duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
     <div class="flex flex-col justify-center">
         <h2 class="text-2xl text-bold pt-0"><a href='{{ page.permalink }}'>{{ page.title }}</a></h2>
 
@@ -91,14 +96,14 @@
             <!-- Read more link -->
             <div class="flex items-center w-1/3 mb-2">
                 <a class="flex" href='{{ page.permalink }}'>
-                    {{ trans(key="read_more", lang=lang) }}
+                    {{ config.extra.read_more }}
                     <i class="bi bi-arrow-right ml-1" style="font-size: 1rem;"></i>
                 </a>
             </div>
 
             <!-- Skills & Technologies Section -->
             {% if page.taxonomies.skills %}
-            <h2>{{ trans(key="skills_technologies", lang=lang) }}</h2>
+            <h2>{{ config.extra.read_more }}</h2>
             {{ macros::project_list_skills(skills=page.taxonomies.skills, lang=lang) }}
             {% endif %}
 
@@ -108,12 +113,15 @@
 {% endmacro %}
 
 {% macro navbar_button(url, text) %}
-{%if lang == config.default_language %}{% set language_url_part = '' %}{% else %}{% set language_url_part = lang %}{%
+{%if lang == config.default_language %}{% set language_url_part = '' %}{% else %}{% set language_url_part = lang 
+%}{%
 endif %} {# Empty for default language and language for others. #}
-<a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ language_url_part }}/{{ url }}" {% if current_path
+<a href="{{ config.base_url | trim_end_matches(pat='/') | safe }}/{{ language_url_part }}/{{ url }}" {% if 
+current_path
     and ((url !="" and url in current_path) or (url=="" and current_path | trim_end_matches(pat=lang ~'/') |
     trim_end_matches(pat='/' )=="" )) %} class="bg-gray-900 text-white px-3 py-2 rounded-md text-sm font-medium" {#
     Highlight button, if button URL is part of the current path. #} {% else %}
-    class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+    class="text-gray-800 dark:text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm 
+font-medium"
     {% endif %}>{{ text }}</a>
 {% endmacro %}

@@ -14,7 +14,8 @@
 
     {% for page in pages %}
     <div
-      class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
+      class="border border-2 border-gray-200 dark:border-black rounded-xl p-5 shadow-2xl transform transition 
+duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800">
       <div class="flex flex-col py-2 justify-center">
         <h2 class="text-2xl text-bold"><a href='{{ page.permalink }}'>{{ page.title }}</a></h2>
         <p class="text-bold">{{ page.description }}</p>
@@ -58,13 +59,16 @@
     {% if not paginator.previous %}
     <!-- Disabled -->
     <span
-      class="flex items-center border border-gray-400 dark:border-black rounded-lg px-3 py-4 bg-gray-400 text-gray-200">
+      class="flex items-center border border-gray-400 dark:border-black rounded-lg px-3 py-4 bg-gray-400 
+text-gray-200">
       <i class="bi bi-arrow-left" style="font-size: 1rem;"></i>
       Previous
     </span>
     {% else %}
     <!-- Active -->
-    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white px-3 py-4 rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
+    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 
+dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white px-3 py-4 rounded-md text-sm 
+font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
       href="{{ paginator.previous }}" {% if not paginator.previous %}disabled{% endif %}>
       <i class="bi bi-arrow-left" style="font-size: 1rem;"></i>
       Previous
@@ -73,7 +77,10 @@
     <ul class="flex gap-x-2">
       {% for pager in range(start=1, end=paginator.number_pagers+1) %}
       <li class="">
-        <a class="p-4 border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 {% if paginator.current_index == pager %}bg-blue-500{% else %}bg-gray-200 dark:bg-gray-800{% endif %}"
+        <a class="p-4 border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 
+hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-white rounded-md text-sm font-medium transform transition 
+duration-500 hover:scale-105 {% if paginator.current_index == pager %}bg-blue-500{% else %}bg-gray-200 
+dark:bg-gray-800{% endif %}"
           href="{{ paginator.base_url }}{{pager}}" aria-label="Page {{pager}}">
           {{pager}}
         </a>
@@ -83,13 +90,16 @@
     {% if not paginator.next %}
     <!-- Disabled -->
     <span
-      class="flex items-center border border-gray-400 dark:border-black rounded-lg  px-3 py-4 bg-gray-400 text-gray-200">
+      class="flex items-center border border-gray-400 dark:border-black rounded-lg  px-3 py-4 bg-gray-400 
+text-gray-200">
       Next Page
       <i class="bi bi-arrow-right" style="font-size: 1rem;"></i>
     </span>
     {% else %}
     <!-- Active -->
-    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white px-3 py-4 rounded-md text-sm font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
+    <a class="flex items-center border border-gray-400 dark:border-black rounded-lg text-gray-800 dark:text-gray-300 
+dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-600 dark:hover:text-white px-3 py-4 rounded-md text-sm 
+font-medium transform transition duration-500 hover:scale-105 bg-gray-200 dark:bg-gray-800"
       href="{{ paginator.next }}">
       Next page
       <i class="bi bi-arrow-right" style="font-size: 1rem;"></i>
